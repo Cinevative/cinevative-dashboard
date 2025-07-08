@@ -990,7 +990,7 @@
         <!-- Timeline -->
         <div class="card timeline-section">
             <div class="card-header">
-                <h3 class="card-title">📅 Today's Schedule - Monday, July 7th</h3>
+                <h3 class="card-title">📅 <span id="todaySchedule">Today's Schedule</span></h3>
             </div>
             <div class="card-body" style="padding-top: 0;">
                 <div id="timeline">
@@ -1106,7 +1106,18 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateDaysInMonth();
             updateAllProgress();
+            updateTodayDate();
         });
+
+        function updateTodayDate() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const todayString = today.toLocaleDateString('en-US', options);
+            const todaySchedule = document.getElementById('todaySchedule');
+            if (todaySchedule) {
+                todaySchedule.textContent = `Today's Schedule - ${todayString}`;
+            }
+        }
 
         function updateDaysInMonth() {
             const today = new Date();
