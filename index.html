@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinevative Ultimate Dashboard</title>
+    <title>Cinevative Daily Command Center</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
             color: #ffffff;
             min-height: 100vh;
             padding: 20px;
@@ -28,24 +28,102 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .company-name {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #007AFF, #5856D6, #AF52DE);
+            background: linear-gradient(135deg, #ffffff, #cccccc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             letter-spacing: -0.02em;
         }
 
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #8E8E93;
             font-weight: 300;
+        }
+
+        .daily-instructions {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .instructions-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .instruction-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .instruction-item {
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .instruction-item:last-child {
+            border-bottom: none;
+        }
+
+        .link-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            color: #000000;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin: 5px 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .prompt-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #cccccc;
         }
 
         .revenue-section {
@@ -65,21 +143,6 @@
             overflow: hidden;
         }
 
-        .revenue-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 3s ease-in-out;
-        }
-
-        .revenue-card:hover::before {
-            left: 100%;
-        }
-
         .revenue-title {
             font-size: 1.1rem;
             color: #8E8E93;
@@ -92,11 +155,6 @@
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 8px;
-        }
-
-        .revenue-progress {
-            font-size: 1rem;
-            color: #8E8E93;
         }
 
         .dual-progress-container {
@@ -127,10 +185,8 @@
             position: relative;
         }
 
-        .revenue-ahead { background: linear-gradient(90deg, #30D158, #5AD273); }
-        .revenue-ontrack { background: linear-gradient(90deg, #32D74B, #48D763); }
         .revenue-behind { background: linear-gradient(90deg, #FF9500, #FFB84D); }
-        .revenue-critical { background: linear-gradient(90deg, #FF3B30, #FF6B6B); }
+        .revenue-ontrack { background: linear-gradient(90deg, #32D74B, #48D763); }
 
         .top-section {
             display: grid;
@@ -207,10 +263,10 @@
         }
 
         .add-proposal-btn {
-            background: linear-gradient(135deg, #007AFF, #5856D6);
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
             border: none;
             border-radius: 10px;
-            color: white;
+            color: #000000;
             padding: 10px 15px;
             font-size: 0.9rem;
             cursor: pointer;
@@ -220,10 +276,61 @@
 
         .add-proposal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
         }
 
-        .goal-pace-section {
+        .progress-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .progress-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .progress-title {
+            font-size: 1rem;
+            color: #8E8E93;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-red { background: linear-gradient(90deg, #FF3B30, #FF6B6B); }
+        .progress-yellow { background: linear-gradient(90deg, #FF9500, #FFB84D); }
+        .progress-green { background: linear-gradient(90deg, #30D158, #5AD273); }
+
+        .progress-percentage {
+            font-size: 0.9rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
             margin-bottom: 40px;
         }
 
@@ -275,124 +382,6 @@
             color: #8E8E93;
         }
 
-        .pace-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 30px;
-        }
-
-        .pace-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .pace-slider-container {
-            margin-bottom: 20px;
-        }
-
-        .pace-slider {
-            width: 100%;
-            height: 8px;
-            border-radius: 10px;
-            background: linear-gradient(to right, #FF3B30 0%, #FF9500 50%, #30D158 100%);
-            outline: none;
-            appearance: none;
-            cursor: pointer;
-        }
-
-        .pace-slider::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #ffffff;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .pace-status {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #FF9500;
-            margin-top: 10px;
-        }
-
-        .progress-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .progress-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 20px;
-        }
-
-        .progress-title {
-            font-size: 1rem;
-            color: #8E8E93;
-            margin-bottom: 10px;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 8px;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .progress-red { background: linear-gradient(90deg, #FF3B30, #FF6B6B); }
-        .progress-yellow { background: linear-gradient(90deg, #FF9500, #FFB84D); }
-        .progress-green { background: linear-gradient(90deg, #30D158, #5AD273); }
-
-        .progress-percentage {
-            font-size: 0.9rem;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .bottom-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
         .automation-status {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
@@ -427,8 +416,8 @@
         }
 
         .reminder-item {
-            background: rgba(0, 122, 255, 0.1);
-            border: 1px solid rgba(0, 122, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             padding: 12px;
             margin-bottom: 10px;
@@ -436,7 +425,7 @@
 
         .reminder-title {
             font-weight: 600;
-            color: #007AFF;
+            color: #ffffff;
             margin-bottom: 5px;
         }
 
@@ -448,7 +437,8 @@
         @media (max-width: 768px) {
             .revenue-section,
             .top-section,
-            .bottom-section {
+            .bottom-section,
+            .instructions-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -463,7 +453,86 @@
         <!-- Header -->
         <div class="header">
             <h1 class="company-name">Cinevative</h1>
-            <p class="tagline">Ultimate Revenue Command Center</p>
+            <p class="tagline">Daily Command Center</p>
+        </div>
+
+        <!-- Daily Instructions Section -->
+        <div class="daily-instructions">
+            <div class="instructions-title">📋 Your Daily Success System - Follow These Steps Every Morning</div>
+            
+            <div class="instructions-grid">
+                <!-- Morning Setup -->
+                <div class="instruction-section">
+                    <div class="section-title">🌅 6:00 AM - Morning Setup</div>
+                    
+                    <div class="instruction-item">
+                        <strong>Step 1:</strong> Open your Dashboard Updates Log
+                        <br>
+                        <a href="https://docs.google.com/document/d/1W7xGysgWBUZYzu_LG9YWp0_n_jioEo2DBoDdquzQFis" target="_blank" class="link-button">📝 Dashboard Updates Log</a>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <strong>Step 2:</strong> Fill out today's planning section with:
+                        <ul style="margin-left: 20px; margin-top: 8px; color: #cccccc;">
+                            <li>Today's calendar/meetings with times</li>
+                            <li>Priority changes or new urgent items</li>
+                            <li>Energy/timing preferences</li>
+                            <li>What worked/didn't work yesterday</li>
+                            <li>Sales updates (deals, prospects, pipeline)</li>
+                        </ul>
+                    </div>
+
+                    <div class="instruction-item">
+                        <strong>Step 3:</strong> Message Claude with this prompt:
+                        <div class="prompt-box">
+"Good morning! I've updated my Dashboard Updates Log for today. Please:
+1. Read my updates and create today's chronological dashboard
+2. Provide my 6 AM coaching based on current priorities
+3. Give me sales/marketing guidance based on my metrics
+4. Let me know what to focus on RIGHT NOW"</div>
+                    </div>
+                </div>
+
+                <!-- Resources & Links -->
+                <div class="instruction-section">
+                    <div class="section-title">🔗 Essential Links & Resources</div>
+                    
+                    <div class="instruction-item">
+                        <strong>Conference Tracker:</strong>
+                        <br>
+                        <a href="https://docs.google.com/spreadsheets/d/1W7xGysgWBUZYzu_LG9YWp0_n_jioEo2DBoDdquzQFis" target="_blank" class="link-button">🎭 2025 Conference Tracker</a>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <strong>Sales System:</strong>
+                        <br>
+                        <a href="#" class="link-button">💼 Copper CRM</a>
+                        <a href="#" class="link-button">📧 Gmail Templates</a>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <strong>Marketing Resources:</strong>
+                        <br>
+                        <a href="#" class="link-button">📊 Marketing Log</a>
+                        <a href="#" class="link-button">🎯 Campaign Tracker</a>
+                    </div>
+
+                    <div class="instruction-item">
+                        <strong>Daily Workflow:</strong>
+                        <ol style="margin-left: 20px; margin-top: 8px; color: #cccccc;">
+                            <li>Update Dashboard Log (5 min)</li>
+                            <li>Get Claude's coaching (10 min)</li>
+                            <li>Follow chronological priorities</li>
+                            <li>Update sales metrics as you go</li>
+                            <li>End-of-day: Plan tomorrow</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                <strong>🎯 Daily Success Formula:</strong> Update Log → Get Coaching → Follow Priorities → Update Metrics → Plan Tomorrow
+            </div>
         </div>
 
         <!-- Revenue Section -->
@@ -504,20 +573,20 @@
                     Today's Activities
                 </div>
                 <div class="activity-item">
-                    <strong>Send Jacksonville Symphony proposal</strong><br>
-                    <span class="proposal-value">$33,000 value</span>
+                    <strong>Check Dashboard Updates Log</strong><br>
+                    <span style="color: #FF9500;">Complete morning setup first</span>
                 </div>
                 <div class="activity-item">
-                    <strong>Follow up on Walnut Street</strong><br>
-                    <span style="color: #FF3B30;">2 days overdue</span> • $18,000
+                    <strong>Get Claude's daily coaching</strong><br>
+                    Use the prompt above for guidance
                 </div>
                 <div class="activity-item">
-                    <strong>Call Chico State about timeline</strong><br>
-                    Proposal sent 1 week ago
+                    <strong>Follow chronological priorities</strong><br>
+                    Claude will provide your updated timeline
                 </div>
                 <div class="activity-item">
-                    <strong>Email theater directors list</strong><br>
-                    10 new contacts for outreach
+                    <strong>Update sales metrics</strong><br>
+                    Track progress throughout the day
                 </div>
             </div>
 
@@ -566,17 +635,6 @@
                 <div class="proposal-actions">
                     <button class="add-proposal-btn">+ Add Active Proposal</button>
                 </div>
-            </div>
-        </div>
-
-        <!-- Goal Pace Section -->
-        <div class="goal-pace-section">
-            <div class="pace-card">
-                <div class="pace-title">Goal Pace: 42% toward $1.6M</div>
-                <div class="pace-slider-container">
-                    <input type="range" class="pace-slider" min="0" max="100" value="42" disabled>
-                </div>
-                <div class="pace-status">Approaching pace - consistent effort needed</div>
             </div>
         </div>
 
