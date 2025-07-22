@@ -12,765 +12,423 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
-            line-height: 1.6;
         }
 
-        .dashboard-container {
+        .command-center {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .header {
             text-align: center;
             margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
         }
 
-        .company-name {
-            font-size: 3rem;
+        .logo {
+            font-size: 32px;
             font-weight: 700;
-            background: linear-gradient(135deg, #ffffff, #cccccc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 5px;
-            letter-spacing: -0.02em;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
 
-        .tagline {
-            font-size: 1.1rem;
-            color: #8E8E93;
-            font-weight: 300;
+        .date {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: 500;
         }
 
         .daily-instructions {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .instructions-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .instructions-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 25px;
-        }
-
-        .instruction-section {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .instruction-item {
-            margin-bottom: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .instruction-item:last-child {
-            border-bottom: none;
-        }
-
-        .link-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffffff, #e0e0e0);
-            color: #000000;
-            padding: 8px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin: 5px 5px 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .link-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .prompt-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #cccccc;
-        }
-
-        .revenue-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .revenue-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .revenue-title {
-            font-size: 1.1rem;
-            color: #8E8E93;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .revenue-amount {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .dual-progress-container {
-            margin-top: 15px;
-        }
-
-        .progress-label {
-            font-size: 0.9rem;
-            color: #8E8E93;
-            margin-bottom: 5px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .dual-progress-bar {
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 8px;
-            position: relative;
-        }
-
-        .dual-progress-fill {
-            height: 100%;
-            border-radius: 10px;
-            transition: all 1s ease-out;
-            position: relative;
-        }
-
-        .revenue-behind { background: linear-gradient(90deg, #FF9500, #FFB84D); }
-        .revenue-ontrack { background: linear-gradient(90deg, #32D74B, #48D763); }
-
-        .top-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
             padding: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+        .daily-instructions h2 {
+            font-size: 24px;
             margin-bottom: 20px;
-            color: #ffffff;
             display: flex;
             align-items: center;
-            gap: 10px;
         }
 
-        .card-icon {
-            font-size: 1.4rem;
+        .daily-instructions h2::before {
+            content: "🚀";
+            margin-right: 10px;
+            font-size: 28px;
         }
 
-        .activity-item, .proposal-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .activity-item:hover, .proposal-item:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateX(5px);
-        }
-
-        .proposal-overdue {
-            border-left: 4px solid #FF3B30;
-            background: rgba(255, 59, 48, 0.1);
-        }
-
-        .proposal-ready {
-            border-left: 4px solid #30D158;
-            background: rgba(48, 209, 88, 0.1);
-        }
-
-        .proposal-value {
-            color: #30D158;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .proposal-actions {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .add-proposal-btn {
-            background: linear-gradient(135deg, #ffffff, #e0e0e0);
-            border: none;
-            border-radius: 10px;
-            color: #000000;
-            padding: 10px 15px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .add-proposal-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .progress-section {
+        .instruction-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
-        .progress-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+        .instruction-step {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-number {
+            background: #fff;
+            color: #ff6b6b;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .links-section {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
             padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
         }
 
-        .progress-title {
-            font-size: 1rem;
-            color: #8E8E93;
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .quick-link {
+            background: rgba(255,255,255,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .quick-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-card.revenue {
+            border-left-color: #e74c3c;
+        }
+
+        .metric-card.pipeline {
+            border-left-color: #f39c12;
+        }
+
+        .metric-card.activity {
+            border-left-color: #27ae60;
+        }
+
+        .metric-title {
+            font-size: 14px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 600;
             margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .metric-subtitle {
+            font-size: 14px;
+            color: #95a5a6;
         }
 
         .progress-bar {
+            width: 100%;
             height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin: 10px 0;
             overflow: hidden;
-            margin-bottom: 8px;
-            position: relative;
         }
 
         .progress-fill {
             height: 100%;
-            border-radius: 10px;
-            transition: width 1s ease-out;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            border-radius: 4px;
+            transition: width 0.5s ease;
         }
 
-        .progress-red { background: linear-gradient(90deg, #FF3B30, #FF6B6B); }
-        .progress-yellow { background: linear-gradient(90deg, #FF9500, #FFB84D); }
-        .progress-green { background: linear-gradient(90deg, #30D158, #5AD273); }
-
-        .progress-percentage {
-            font-size: 0.9rem;
-            color: #ffffff;
-            font-weight: 600;
+        .progress-fill.good {
+            background: linear-gradient(90deg, #27ae60, #229954);
         }
 
-        .bottom-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .conference-prep {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 25px;
-            margin-bottom: 40px;
-        }
-
-        .conf-prep-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .conf-prep-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .conf-prep-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .conf-prep-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .conf-prep-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .conf-prep-status {
-            font-size: 0.85rem;
-            color: #8E8E93;
+        .progress-fill.warning {
+            background: linear-gradient(90deg, #f39c12, #d68910);
         }
 
         .automation-status {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 25px;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
         }
 
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            padding: 10px;
+        .automation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .automation-item {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.02);
+            text-align: center;
         }
 
-        .status-active {
-            color: #30D158;
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #27ae60;
+            display: inline-block;
+            margin-right: 8px;
         }
 
-        .sync-status {
-            color: #8E8E93;
-            font-size: 0.9rem;
+        .copy-prompt {
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .copy-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
             margin-top: 10px;
         }
 
-        .time-section .card-content {
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .reminder-item {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 10px;
-        }
-
-        .reminder-title {
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-
-        .reminder-text {
-            font-size: 0.9rem;
-            color: #8E8E93;
+        .copy-button:hover {
+            background: #2980b9;
         }
 
         @media (max-width: 768px) {
-            .revenue-section,
-            .top-section,
-            .bottom-section,
-            .instructions-grid {
+            .command-center {
+                padding: 20px;
+            }
+            
+            .instruction-grid {
                 grid-template-columns: 1fr;
             }
             
-            .company-name {
-                font-size: 2.5rem;
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .automation-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Header -->
+    <div class="command-center">
         <div class="header">
-            <h1 class="company-name">Cinevative</h1>
-            <p class="tagline">Daily Command Center</p>
+            <div class="logo">CINEVATIVE</div>
+            <div class="date" id="currentDate"></div>
         </div>
 
-        <!-- Daily Instructions Section -->
         <div class="daily-instructions">
-            <div class="instructions-title">📋 Your Daily Success System - Follow These Steps Every Morning</div>
+            <h2>Daily Success Protocol</h2>
             
-            <div class="instructions-grid">
-                <!-- Morning Setup -->
-                <div class="instruction-section">
-                    <div class="section-title">🌅 6:00 AM - Morning Setup</div>
-                    
-                    <div class="instruction-item">
-                        <strong>Step 1:</strong> Open your Dashboard Updates Log
-                        <br>
-                        <a href="https://docs.google.com/document/d/181_tAB45sJEdg-6uzPZ2LLZFP_3UiPRgp8QW2MIyOjU/edit" target="_blank" class="link-button">📝 Dashboard Updates Log</a>
-                    </div>
-                    
-                    <div class="instruction-item">
-                        <strong>Step 2:</strong> Fill out today's planning section with:
-                        <ul style="margin-left: 20px; margin-top: 8px; color: #cccccc;">
-                            <li>Today's calendar/meetings with times</li>
-                            <li>Priority changes or new urgent items</li>
-                            <li>Energy/timing preferences</li>
-                            <li>What worked/didn't work yesterday</li>
-                            <li>Sales updates (deals, prospects, pipeline)</li>
-                        </ul>
-                    </div>
-
-                    <div class="instruction-item">
-                        <strong>Step 3:</strong> Message Claude with this prompt:
-                        <div class="prompt-box">
-"Good morning! I've updated my Dashboard Updates Log for today. Please:
-1. Read my updates and create today's chronological dashboard
-2. Provide my 6 AM coaching based on current priorities
-3. Give me sales/marketing guidance based on my metrics
-4. Let me know what to focus on RIGHT NOW"</div>
-                    </div>
+            <div class="instruction-grid">
+                <div class="instruction-step">
+                    <span class="step-number">1</span>
+                    <strong>Update Dashboard Log</strong><br>
+                    Fill out today's priorities, energy, and updates
                 </div>
-
-                <!-- Resources & Links -->
-                <div class="instruction-section">
-                    <div class="section-title">🔗 Essential Links & Resources</div>
-                    
-                    <div class="instruction-item">
-                        <strong>Conference Tracker:</strong>
-                        <br>
-                        <a href="https://docs.google.com/spreadsheets/d/1W7xGysgWBUZYzu_LG9YWp0_n_jioEo2DBoDdquzQFis" target="_blank" class="link-button">🎭 2025 Conference Tracker</a>
-                    </div>
-                    
-                    <div class="instruction-item">
-                        <strong>Sales System:</strong>
-                        <br>
-                        <a href="#" class="link-button">💼 Copper CRM</a>
-                        <a href="#" class="link-button">📧 Gmail Templates</a>
-                    </div>
-                    
-                    <div class="instruction-item">
-                        <strong>Marketing Resources:</strong>
-                        <br>
-                        <a href="#" class="link-button">📊 Marketing Log</a>
-                        <a href="#" class="link-button">🎯 Campaign Tracker</a>
-                    </div>
-
-                    <div class="instruction-item">
-                        <strong>Daily Workflow:</strong>
-                        <ol style="margin-left: 20px; margin-top: 8px; color: #cccccc;">
-                            <li>Update Dashboard Log (5 min)</li>
-                            <li>Get Claude's coaching (10 min)</li>
-                            <li>Follow chronological priorities</li>
-                            <li>Update sales metrics as you go</li>
-                            <li>End-of-day: Plan tomorrow</li>
-                        </ol>
-                    </div>
+                <div class="instruction-step">
+                    <span class="step-number">2</span>
+                    <strong>Copy Prompt Below</strong><br>
+                    Send exact prompt to Claude for daily coaching
+                </div>
+                <div class="instruction-step">
+                    <span class="step-number">3</span>
+                    <strong>Execute Sequence</strong><br>
+                    Follow chronological priorities - no decisions
+                </div>
+                <div class="instruction-step">
+                    <span class="step-number">4</span>
+                    <strong>Hourly Check-ins</strong><br>
+                    Use timer system, stay on priority track
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
-                <strong>🎯 Daily Success Formula:</strong> Update Log → Get Coaching → Follow Priorities → Update Metrics → Plan Tomorrow
+            <div class="copy-prompt">
+                Good morning! I've updated my Dashboard Updates Log for today. Please: 1. Read my updates and create today's chronological dashboard 2. Provide my 6 AM coaching based on current priorities 3. Give me sales/marketing guidance based on my metrics 4. Let me know what to focus on RIGHT NOW. Please pay special attention to what I wrote under "notes for tomorrow" as that contains critical information for help I need.
+            </div>
+            <button class="copy-button" onclick="copyPrompt()">📋 Copy Daily Prompt</button>
+        </div>
+
+        <div class="links-section">
+            <h3>🔗 Essential Links</h3>
+            <div class="link-grid">
+                <a href="https://docs.google.com/document/d/181_tAB45sJEdg-6uzPZ2LLZFP_3UiPRgp8QW2MIyOjU/edit" class="quick-link" target="_blank">📝 Dashboard Updates Log</a>
+                <a href="https://docs.google.com/document/d/1G9XrJZj8UQltiX0Ua51v8yyExO_068LwOkOUMNhgO_g/edit" class="quick-link" target="_blank">💼 Sales Coaching Log</a>
+                <a href="https://docs.google.com/document/d/1y_oEYTjpE4dklNYHyl-bEiufEhPsnJ438sBuqYMETxk/edit" class="quick-link" target="_blank">🎯 Marketing Master Guide</a>
+                <a href="https://gmail.com" class="quick-link" target="_blank">📧 Gmail</a>
+                <a href="https://calendar.google.com" class="quick-link" target="_blank">📅 Google Calendar</a>
+                <a href="https://app.copper.com" class="quick-link" target="_blank">💼 Copper CRM</a>
             </div>
         </div>
 
-        <!-- Revenue Section -->
-        <div class="revenue-section">
-            <div class="revenue-card">
-                <div class="revenue-title">YTD Revenue</div>
-                <div class="revenue-amount">$669,658</div>
-                <div class="dual-progress-container">
-                    <div class="progress-label">
-                        <span>Revenue Progress</span>
-                        <span>42%</span>
-                    </div>
-                    <div class="dual-progress-bar">
-                        <div class="dual-progress-fill revenue-behind" style="width: 42%"></div>
-                    </div>
-                    <div class="progress-label">
-                        <span>Year Progress</span>
-                        <span>53%</span>
-                    </div>
-                    <div class="dual-progress-bar">
-                        <div class="dual-progress-fill revenue-ontrack" style="width: 53%"></div>
-                    </div>
+        <div class="automation-status">
+            <h3>🤖 Live Automation Status</h3>
+            <div class="automation-grid">
+                <div class="automation-item">
+                    <span class="status-dot"></span>
+                    <div><strong>Copper → Sheets</strong></div>
+                    <div>Pipeline Tracking</div>
                 </div>
-            </div>
-            <div class="revenue-card">
-                <div class="revenue-title">Pipeline Value</div>
-                <div class="revenue-amount">$278,950</div>
-                <div class="revenue-progress">17.4% of annual goal</div>
-            </div>
-        </div>
-
-        <!-- Top Action Section -->
-        <div class="top-section">
-            <!-- Today's Activities -->
-            <div class="card">
-                <div class="card-title">
-                    <span class="card-icon">🎯</span>
-                    Today's Activities
+                <div class="automation-item">
+                    <span class="status-dot"></span>
+                    <div><strong>Gmail → Sheets</strong></div>
+                    <div>Outreach Logging</div>
                 </div>
-                <div class="activity-item">
-                    <strong>Check Dashboard Updates Log</strong><br>
-                    <span style="color: #FF9500;">Complete morning setup first</span>
-                </div>
-                <div class="activity-item">
-                    <strong>Get Claude's daily coaching</strong><br>
-                    Use the prompt above for guidance
-                </div>
-                <div class="activity-item">
-                    <strong>Follow chronological priorities</strong><br>
-                    Claude will provide your updated timeline
-                </div>
-                <div class="activity-item">
-                    <strong>Update sales metrics</strong><br>
-                    Track progress throughout the day
-                </div>
-            </div>
-
-            <!-- Proposals Due -->
-            <div class="card">
-                <div class="card-title">
-                    <span class="card-icon">⏰</span>
-                    Proposals Due
-                </div>
-                <div class="proposal-item proposal-ready">
-                    <strong>Jacksonville Symphony</strong><br>
-                    Ready to send • <span class="proposal-value">$33,000</span>
-                </div>
-                <div class="proposal-item proposal-overdue">
-                    <strong>Walnut Street Theatre</strong><br>
-                    Follow-up call needed • <span class="proposal-value">$18,000</span><br>
-                    <span style="color: #FF3B30;">2 days overdue</span>
-                </div>
-                <div class="proposal-item">
-                    <strong>Murray's Dinner Theatre</strong><br>
-                    Draft due Friday • <span class="proposal-value">$15,000</span>
-                </div>
-                <div class="proposal-actions">
-                    <button class="add-proposal-btn">+ Add New Proposal Due</button>
-                </div>
-            </div>
-
-            <!-- Active Proposals -->
-            <div class="card">
-                <div class="card-title">
-                    <span class="card-icon">📋</span>
-                    Active Proposals
-                </div>
-                <div class="proposal-item">
-                    <strong>Village Theatre 25/26</strong><br>
-                    Sent 3 days ago • <span class="proposal-value">$16,000</span>
-                </div>
-                <div class="proposal-item">
-                    <strong>Chico State 2024</strong><br>
-                    Sent 1 week ago • <span class="proposal-value">$12,000</span>
-                </div>
-                <div class="proposal-item">
-                    <strong>Duluth Playhouse</strong><br>
-                    Sent 2 weeks ago • <span class="proposal-value">$25,000</span>
-                </div>
-                <div class="proposal-actions">
-                    <button class="add-proposal-btn">+ Add Active Proposal</button>
+                <div class="automation-item">
+                    <span class="status-dot"></span>
+                    <div><strong>Calendar → Sheets</strong></div>
+                    <div>Meeting Tracking</div>
                 </div>
             </div>
         </div>
 
-        <!-- Progress Metrics -->
-        <div class="progress-section">
-            <div class="progress-card">
-                <div class="progress-title">Pipeline Building</div>
+        <div class="metrics-grid">
+            <div class="metric-card revenue">
+                <div class="metric-title">YTD Revenue Progress</div>
+                <div class="metric-value">$669K</div>
+                <div class="metric-subtitle">of $2M goal (33.5%)</div>
                 <div class="progress-bar">
-                    <div class="progress-fill progress-red" style="width: 17.4%"></div>
+                    <div class="progress-fill warning" style="width: 33.5%"></div>
                 </div>
-                <div class="progress-percentage">17.4% - Needs attention</div>
             </div>
-            <div class="progress-card">
-                <div class="progress-title">Sales Outreach</div>
-                <div class="progress-bar">
-                    <div class="progress-fill progress-green" style="width: 85%"></div>
-                </div>
-                <div class="progress-percentage">85% - Excellent</div>
-            </div>
-            <div class="progress-card">
-                <div class="progress-title">Meeting Activity</div>
-                <div class="progress-bar">
-                    <div class="progress-fill progress-yellow" style="width: 72%"></div>
-                </div>
-                <div class="progress-percentage">72% - Good</div>
-            </div>
-            <div class="progress-card">
-                <div class="progress-title">Proposal Creation</div>
-                <div class="progress-bar">
-                    <div class="progress-fill progress-yellow" style="width: 60%"></div>
-                </div>
-                <div class="progress-percentage">60% - Steady</div>
-            </div>
-        </div>
 
-        <!-- Conference Prep Section -->
-        <div class="conference-prep">
-            <div class="card-title">
-                <span class="card-icon">🎭</span>
-                Conference Prep: 2025 Conferences
+            <div class="metric-card pipeline">
+                <div class="metric-title">Active Pipeline Value</div>
+                <div class="metric-value" id="pipelineValue">Loading...</div>
+                <div class="metric-subtitle">Current opportunities</div>
+                <div class="progress-bar">
+                    <div class="progress-fill warning" style="width: 25%"></div>
+                </div>
             </div>
-            <div class="conf-prep-grid">
-                <div class="conf-prep-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1W7xGysgWBUZYzu_LG9YWp0_n_jioEo2DBoDdquzQFis', '_blank')">
-                    <span class="conf-prep-icon">🎭</span>
-                    <div class="conf-prep-title">Capacity Interactive</div>
-                    <div class="conf-prep-status">Feb 10-12, 2025</div>
-                </div>
-                <div class="conf-prep-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1W7xGysgWBUZYzu_LG9YWp0_n_jioEo2DBoDdquzQFis', '_blank')">
-                    <span class="conf-prep-icon">🎵</span>
-                    <div class="conf-prep-title">NAMT Conference</div>
-                    <div class="conf-prep-status">Apr 15-18, 2025</div>
-                </div>
-                <div class="conf-prep-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1W7xGysgWBUZYzu_LG9YWp0_n_jioEo2DBoDdquzQFis', '_blank')">
-                    <span class="conf-prep-icon">💻</span>
-                    <div class="conf-prep-title">Tessitura Learning</div>
-                    <div class="conf-prep-status">Jun 8-11, 2025</div>
-                </div>
-                <div class="conf-prep-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1W7xGysgWBUZYzu_LG9YWp0_n_jioEo2DBoDdquzQFis', '_blank')">
-                    <span class="conf-prep-icon">📊</span>
-                    <div class="conf-prep-title">Full Tracker</div>
-                    <div class="conf-prep-status">View all details</div>
+
+            <div class="metric-card activity">
+                <div class="metric-title">Monthly Outreach Target</div>
+                <div class="metric-value" id="outreachCount">Loading...</div>
+                <div class="metric-subtitle">Sales emails this month</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Bottom Section -->
-        <div class="bottom-section">
-            <!-- This Week -->
-            <div class="card">
-                <div class="card-title">
-                    <span class="card-icon">📅</span>
-                    This Week's Focus
-                </div>
-                <div class="card-content">
-                    <div class="activity-item">
-                        <strong>Complete 3 outstanding proposals</strong><br>
-                        Jacksonville, Walnut Street, Murray's
-                    </div>
-                    <div class="activity-item">
-                        <strong>Outreach to 25 new theater contacts</strong><br>
-                        Focus on fall season planning
-                    </div>
-                    <div class="activity-item">
-                        <strong>Schedule 4 sales meetings</strong><br>
-                        Convert prospects to active opportunities
-                    </div>
-                </div>
-            </div>
-
-            <!-- Coming Up -->
-            <div class="card time-section">
-                <div class="card-title">
-                    <span class="card-icon">🔮</span>
-                    Coming Up
-                </div>
-                <div class="card-content">
-                    <div class="reminder-item">
-                        <div class="reminder-title">Conference booth registration</div>
-                        <div class="reminder-text">Opens August 15 (38 days)</div>
-                    </div>
-                    <div class="reminder-item">
-                        <div class="reminder-title">Fall theater season budgeting</div>
-                        <div class="reminder-text">Begins September 1 (55 days)</div>
-                    </div>
-                    <div class="reminder-item">
-                        <div class="reminder-title">USITT proposal deadline</div>
-                        <div class="reminder-text">October 30</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Automation Status -->
-            <div class="card">
-                <div class="card-title">
-                    <span class="card-icon">🤖</span>
-                    Automation Status
-                </div>
-                <div class="automation-status">
-                    <div class="status-item">
-                        <span class="status-active">✅</span>
-                        <span>Copper → Pipeline Tracker (Active)</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-active">✅</span>
-                        <span>Gmail → Sales Activity (Active)</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-active">✅</span>
-                        <span>Calendar → Meeting Tracker (Active)</span>
-                    </div>
-                    <div class="sync-status">
-                        🔄 Last sync: 2 minutes ago
-                    </div>
-                </div>
-            </div>
+        <div style="text-align: center; color: #7f8c8d; margin-top: 30px;">
+            <p><strong>Daily Success Formula:</strong> Morning Planning + Claude Coaching + Systematic Execution = $2M Goal</p>
         </div>
     </div>
+
+    <script>
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Copy prompt function
+        function copyPrompt() {
+            const prompt = "Good morning! I've updated my Dashboard Updates Log for today. Please: 1. Read my updates and create today's chronological dashboard 2. Provide my 6 AM coaching based on current priorities 3. Give me sales/marketing guidance based on my metrics 4. Let me know what to focus on RIGHT NOW. Please pay special attention to what I wrote under \"notes for tomorrow\" as that contains critical information for help I need.";
+            navigator.clipboard.writeText(prompt).then(() => {
+                const button = document.querySelector('.copy-button');
+                const originalText = button.textContent;
+                button.textContent = '✅ Copied!';
+                button.style.background = '#27ae60';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#3498db';
+                }, 2000);
+            });
+        }
+
+        // Simulate loading live data (you'll replace this with real Google Sheets data)
+        setTimeout(() => {
+            document.getElementById('pipelineValue').textContent = '$278K';
+            document.getElementById('outreachCount').textContent = '47';
+        }, 1000);
+
+        // Add live time updates
+        function updateTime() {
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        setInterval(updateTime, 60000); // Update every minute
+    </script>
 </body>
 </html>
